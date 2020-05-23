@@ -7,7 +7,10 @@
     "@testing-library/react": "^9.5.0",
     "@testing-library/user-event": "^7.2.1",
     "airbnb": "0.0.2",
+    "antd": "^4.2.4",
     "babel-eslint": "^10.1.0",
+    "gh-pages": "^2.2.0",
+    "prop-types": "^15.7.2",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-scripts": "3.4.1"
@@ -16,9 +19,7 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject",
-    "eslint": "node_modules/.bin/eslint src/",
-    "eslint:fix": "node_modules/.bin/eslint src/ --fix"
+    "eject": "react-scripts eject"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -53,7 +54,7 @@
   },
   "lint-staged": {
     "*.{js,jsx}": [
-      "node_modules/.bin/eslint --max-warnings=0",
+      "node_modules/.bin/eslint --fix",
       "prettier --write",
       "git add"
     ]
