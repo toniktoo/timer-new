@@ -104,7 +104,6 @@ const Countdown = () => {
           handleSliderChange={handleSliderChange}
         />
       </div>
-      {/* <audio id="music" preload="auto" src="./music/audio.wav" /> */}
     </Card>
   );
   return <div>{renderCard()}</div>;
