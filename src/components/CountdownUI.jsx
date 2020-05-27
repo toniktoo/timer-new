@@ -18,10 +18,11 @@ const CountdownUI = (props) => {
         <InputNumber
           disabled={isActive}
           min={0}
-          max={720} // у минут ограничиваться 720 минутами
+          max={719} // у минут ограничиваться 720 минутами
           style={{}}
           value={minutes}
           onChange={handleMinutsChange}
+          type="number"
         />
       </div>
       <div>
@@ -33,6 +34,7 @@ const CountdownUI = (props) => {
           style={{}}
           value={seconds}
           onChange={handleSecondsChange}
+          type="number"
         />
       </div>
       <div>

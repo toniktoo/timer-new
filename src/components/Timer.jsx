@@ -20,26 +20,38 @@ const Timer = () => {
   }
 
   useEffect(() => {
-    let interval = null;
+    let timerId = null;
     if (isActive) {
-      interval = setInterval(() => {
+      timerId = setTimeout(function tick() {
         setMs(Date.now() - now);
-      }, 1);
+        timerId = setTimeout(tick, 24);
+      }, 24);
     } else if (!isActive && ms !== 0) {
-      clearInterval(interval);
+      clearTimeout(timerId);
     }
-    return () => clearInterval(interval);
+    return () => clearTimeout(timerId);
   }, [isActive, now, ms]);
 
   const mathDel = (num) => Math.trunc(num);
+
+  // eslint-disable-next-line max-len
+  const renderHour = () => (mathDel(ms / 1000 / 60) < 60 ? mathDel(ms / 1000 / 60) : mathDel(ms / 1000 / 60) % 60);
+
+  const renderMin = () => (mathDel(ms / 1000) < 10 ? mathDel(ms / 1000) : mathDel(ms / 1000) % 60);
+
+  const renderSec = () => (ms < 1000 ? ms : ms % 1000);
 
   return (
     <div>
       <Card title="Timer" bordered={false} style={{ width: 300 }}>
         <div className="time">
-          {mathDel(ms / 1000 / 60) < 60 ? mathDel(ms / 1000 / 60) : mathDel(ms / 1000 / 60) % 60}
-          m: {mathDel(ms / 1000) < 10 ? mathDel(ms / 1000) : mathDel(ms / 1000) % 60}
-          s: {ms < 1000 ? ms : ms % 1000}
+          {renderHour()}
+          m:
+          {' '}
+          {renderMin()}
+          s:
+          {' '}
+          {renderSec()}
           ms
           <hr />
           <div>

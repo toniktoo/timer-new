@@ -1,9 +1,11 @@
+/* eslint-disable jsx-a11y/media-has-caption */
 import React, { useState, useEffect } from 'react';
 import { Card, Progress, Button } from 'antd';
 import CountdownUI from './CountdownUI';
+import mp3 from './chimes.wav';
 
 const Countdown = () => {
-  const [minutes, setMinutes] = useState(1);
+  const [minutes, setMinutes] = useState(0);
   const [seconds, setSeconds] = useState(0);
   const [isActive, setIsActive] = useState(false);
   const [startTime, setStartTime] = useState(0);
@@ -15,7 +17,9 @@ const Countdown = () => {
   };
 
   const toggle = () => {
-    if (!(minutes === 0 && seconds === 0)) setIsActive(!isActive);
+    if (!(minutes === 0 && seconds === 0)) {
+      setIsActive(!isActive);
+    }
     setStartTime(minutes * 60 + seconds);
   };
 
@@ -27,12 +31,9 @@ const Countdown = () => {
   };
 
   useEffect(() => {
-    const handleProgressChange = () => {
-      setProgress((100 * (minutes * 60 + seconds)) / startTime);
-    };
     let interval = null;
     if (isActive) {
-      handleProgressChange();
+      setProgress((100 * (minutes * 60 + seconds)) / startTime);
       interval = setInterval(() => {
         if (seconds === 0) {
           setMinutes((min) => min - 1);
@@ -44,7 +45,7 @@ const Countdown = () => {
           setSeconds(59);
         }
         if (minutes === 0 && seconds === 1) {
-          new Audio('./music/audio.wav').play();
+          new Audio(mp3).play();
           reset();
         }
       }, 1000);
@@ -59,6 +60,11 @@ const Countdown = () => {
   };
   const handleMinutsChange = (min) => {
     setMinutes(min);
+    if (min > 718) {
+      setSeconds(60);
+    } else {
+      setSeconds(0);
+    }
   };
   const handleSliderChange = (time) => {
     setMinutes(Math.trunc(time / 60));
@@ -76,7 +82,9 @@ const Countdown = () => {
       <div className="time">
         <div style={stylesCard}>
           <div>
-            {minutes}:{seconds}
+            {minutes || 0}
+            :
+            {seconds || 0}
           </div>
           <Progress type="circle" percent={100 - Math.floor(progress)} width={50} />
           <div>

@@ -9,16 +9,18 @@ const { TabPane } = Tabs;
 const stylesLayout = { padding: 16 };
 
 const App = () => (
-  <Layout style={stylesLayout}>
-    <Tabs defaultActiveKey="1">
-      <TabPane tab="Tab 1" key="1">
-        <Timer />
-      </TabPane>
-      <TabPane tab="Tab 2" key="2">
-        <Countdown />
-      </TabPane>
-    </Tabs>
-  </Layout>
+  <div className="containerApp">
+    <Layout style={stylesLayout}>
+      <Tabs defaultActiveKey="1">
+        <TabPane tab="Tab 1" key="1">
+          <Timer />
+        </TabPane>
+        <TabPane tab="Tab 2" key="2">
+          <Countdown />
+        </TabPane>
+      </Tabs>
+    </Layout>
+  </div>
 );
 
 export default App;

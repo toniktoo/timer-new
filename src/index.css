@@ -1,3 +1,4 @@
-body {
-  background-color: #f0f2f5 !important;
+.containerApp {
+  background-color: #f0f2f5;
+  height: 100vh;
 }
